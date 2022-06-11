@@ -9,6 +9,9 @@ class BEAR_LaserPointerComponent: ScriptComponent
 	protected bool _isOn = false;	
 	protected Decal _decal;	
 	protected SoundComponent _soundComponent;
+	protected IEntity _laserDotEntity;
+	
+	const bool USE_DECAL = true;
 	
 	void ShowLaserUI()
 	{
@@ -75,6 +78,23 @@ class BEAR_LaserPointerComponent: ScriptComponent
 		float hitDistance = world.TraceMove(trace, null);
 		vector hitPosition = vector.Direction(trace.Start, trace.End) * hitDistance + trace.Start;
 		
+		if(USE_DECAL) 
+			UpdateLaserDotDecal(hitPosition, trace);
+		else 
+			UpdateLaserDotEntity(hitPosition);
+	}
+	
+	protected void UpdateLaserDotEntity(vector targetPosition)
+	{	
+		if(!_laserDotEntity)
+			_laserDotEntity = GetGame().SpawnEntityPrefab(Resource.Load("{5AE60D9669773AFE}Prefabs/LaserDot.et"), GetOwner().GetWorld());
+		_laserDotEntity.SetOrigin(targetPosition);
+	}
+	
+	protected void UpdateLaserDotDecal(vector targetPosition, TraceParam trace)
+	{
+		World world = GetOwner().GetWorld();
+		
 		// Remove the decal from the previous frame
 		if(_decal)
 		{
@@ -82,19 +102,19 @@ class BEAR_LaserPointerComponent: ScriptComponent
 			_decal = NULL;
 		}
 		
+		// If we're aiming at the sky, don't make a decal
+		if(!trace.TraceEnt) return;
+		
 		// The decal is what will actually display our laser. You can think of decals like spray cans. They color everything they hit in a radius.
-		vector decalOrigin = hitPosition + (trace.TraceNorm * 0.2);
+		vector decalOrigin = targetPosition + (trace.TraceNorm * 0.2);
 		ResourceName material = "{D53F4AD028D21A94}Assets/LaserPointerDecal.emat";
 		float nearClip = 0;
 		float farClip = 0.3;
 		float angle = 0;
-		float size = 0.025;
+		float size = 0.5;
 		float stretch = 1;
 		float lifeTime = 0;
 		int color = 0xFFFFFFFF;
-		
-		// If we're aiming at the sky, don't make a decal
-		if(!trace.TraceEnt) return;
 		
 		_decal = world.CreateDecal(trace.TraceEnt, decalOrigin, -trace.TraceNorm, 
 			nearClip, farClip, angle * Math.DEG2RAD, size, stretch, material, lifeTime, color);

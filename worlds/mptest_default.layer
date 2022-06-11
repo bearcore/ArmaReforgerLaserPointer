@@ -2,7 +2,7 @@ GenericEntity : "{0F156CAC1BF75626}Prefabs/Weapons/Attachments/Handguards/PEQ15/
  coords 125.48 1.376 131.921
 }
 GenericEntity : "{723D1C2ACFFEF56E}Prefabs/Weapons/Rifles/M16_Laser/Rifle_M16A2_Laser.et" {
- coords 125.483 1.356 130.818
+ coords 165.887 1.356 130.818
 }
 SCR_DestructibleBuildingEntity : "{7BE9DE15EE9823C2}PrefabLibrary/Structures/Houses/House_Village_E_1I06.et" {
  coords 117.183 0.001 131.842

@@ -1,0 +1,21 @@
+GenericEntity {
+ ID "59969D581D2EE843"
+ components {
+  MeshObject "{59969D5FDFF2B9D0}" {
+   Object "{DAED341AFE9C925D}system/wbdata/Gizmo3D/sphere_small.xob"
+   Materials {
+    MaterialAssignClass "{5996A82071A72A4C}" {
+     SourceMaterial "system/wbdata/gizmo3D/gizmo3D"
+     AssignedMaterial "{87F66F81E518E89D}Assets/LaserPointer/Visual/LaserPointerSphere.emat"
+    }
+   }
+   PixelSizeScale 10
+   CastShadow 0
+   CastFarShadow 0
+   RainOccluder 0
+   WetnessOccluder 0
+   ReceiveLight 0
+  }
+ }
+ coords 125.881 2.092 133.786
+}

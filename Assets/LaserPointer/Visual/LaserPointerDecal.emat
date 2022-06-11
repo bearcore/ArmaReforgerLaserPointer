@@ -1,6 +1,6 @@
 MatPBRDecal {
  Emissive 1 0.153 0.192 1
- EmissiveLV 15
+ EmissiveLV 3.851
  SpecularMul 0
  AlphaMul 2
  BlendMode AlphaBlend
@@ -8,7 +8,7 @@ MatPBRDecal {
  MetalnessScale 0
  AOScale 0
  DielectricReflectance 0.02
- OpacityMap "{67275A010AAEB285}Assets/CircleBrightness.edds"
+ OpacityMap "{CCA56054B2715D94}Assets/LaserPointer/Visual/CircleBrightness_FakeLarge.edds"
  GBufferAlbedo 1
  GBufferRoughness 1
  GBufferMetalness 1
