@@ -6,8 +6,9 @@
 How to add to your weapon mod:
 
 1. Download the mod from the ingame workshop
+<img width="304" alt="ArmaReforgerSteam_OuMZyzIOKs" src="https://user-images.githubusercontent.com/62651909/173182962-3c41fb2c-e6f5-458c-913d-d759d128227a.png">
 
-3. Add 598F2330524F15B8 to your mod dependencies 
+2. Add 598F2330524F15B8 to your mod dependencies 
 <img width="400" alt="ArmaReforgerWorkbench_YivIQXXCPc" src="https://user-images.githubusercontent.com/62651909/173182617-8b72d7e7-25dc-4a5d-8a0f-e9c64a69e704.png">
 <img width="600" alt="ArmaReforgerWorkbench_5kWW1ySNEK" src="https://user-images.githubusercontent.com/62651909/173182619-deadcea2-99d5-4589-82cb-8996d7b27fb5.png">
 
@@ -30,3 +31,9 @@ Alternatively, simply duplicate the PEQ15.et, open your duplicate and then chang
 # Known Issues
 - Rendering of the dot on characters does not work correctly
 - Dot is not visible on distant objects
+
+
+# Credits
+PEQ15: Yksnawel - https://sketchfab.com/3d-models/laser-fdec247d6e804cb2b2f2152a0f9950a9
+
+Press Button sound: Kolombooo - https://freesound.org/people/Kolombooo/sounds/629020/
