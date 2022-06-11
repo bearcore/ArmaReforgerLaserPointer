@@ -1,4 +1,6 @@
 # ArmaReforgerLaserPointer
+![ArmaReforgerWorkbench_VmMDm96WFo](https://user-images.githubusercontent.com/62651909/173182834-fbcebb0b-87c6-48b4-a7a7-46cbc4b58591.jpg)
+
 
 How to add to your weapon mod:
 
