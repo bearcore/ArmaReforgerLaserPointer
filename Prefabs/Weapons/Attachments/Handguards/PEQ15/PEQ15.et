@@ -1,0 +1,88 @@
+GenericEntity : "{FB1A7F5BC7D935E2}Prefabs/Weapons/Attachments/Handguards/Handguard_M16A2/Handguard_M16.et" {
+ ID "557E85EEE1B603F1"
+ components {
+  SoundComponent "{5996720A766F9120}" {
+   Filenames {
+    "{BAC8D246CF608D04}Assets/LaserPointer/Audio/LaserPointer.acp"
+   }
+  }
+  BEAR_LaserPointerComponent "{59966CCEF31DAF17}" {
+  }
+  InventoryItemComponent "{557E85EEE1B60313}" {
+   Enabled 1
+   Attributes SCR_ItemAttributeCollection "{557E85EEE1B60310}" {
+    ItemDisplayName UIInfo "{596CC6F54E5E72C8}" {
+     Name "PEQ15"
+     Description "PEQ15 laser box"
+    }
+    ItemPhysAttributes ItemPhysicalAttributes "{596CC6F55515463F}" {
+     Weight 0.2
+     SizeSetupStrategy Volume
+     DimensionScaler 104
+    }
+    CustomAttributes {
+     WeaponAttachmentAttributes "{557E85EEE1B60316}" {
+      AttachmentType AttachmentHandGuard "{596CC6F60A413A3C}" {
+      }
+     }
+     PreviewRenderAttributes "{557E85EEE1B60314}" {
+      CameraPreset Right
+     }
+     PreviewRenderAttributes "{59966CCE34685588}" {
+      CameraPreset Right
+     }
+    }
+    m_Size SLOT_1x1
+   }
+  }
+  MeshObject "{557E85EE39CED921}" {
+   Object "{723F823FAB77D977}Assets/PEQ15/peq15.xob"
+  }
+  RigidBody "{557E85EE3F17E453}" {
+   LayerPreset "ItemFireView"
+   Static 0
+  }
+  SCR_WeaponAttachmentsStorageComponent "{59966CCE3468557C}" {
+   Attributes SCR_ItemAttributeCollection "{59966CCE3468557E}" {
+    ItemDisplayName WeaponUIInfo "{59966CCE34685579}" {
+     Name "PEQ-15"
+     Description "PEQ-15 Laser"
+    }
+    ItemPhysAttributes ItemPhysicalAttributes "{59966CCE3468557B}" {
+     SizeSetupStrategy Scaler
+    }
+    CustomAttributes {
+     WeaponAttachmentAttributes "{59966CCE34685575}" {
+      AttachmentType AttachmentHandGuard "{59966CCE34685574}" {
+      }
+     }
+    }
+    m_Size SLOT_1x1
+    m_SlotType SLOT_LOADOUT_STORAGE
+   }
+  }
+  ActionsManagerComponent "{557E85EEE1B603FA}" {
+   Enabled 1
+   ActionContexts {
+    UserActionContext "{557E85EEE1B603E0}" {
+     Position PointInfo "{557E85EEE1B603EB}" {
+      Offset 0 0 0
+     }
+     Radius 0.3
+    }
+   }
+   additionalActions {
+    SCR_PickUpItemAction "{59966CCE3468556F}" {
+     ParentContextList {
+      "user"
+     }
+     UIInfo UIInfo "{59966CCE34685569}" {
+      Name "#AR-Inventory_PickUp"
+     }
+    }
+   }
+  }
+ }
+ coords 45.178 0.968 57.856
+ Flags 4194307
+}

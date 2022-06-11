@@ -1,0 +1,23 @@
+GenericEntity : "{0F156CAC1BF75626}Prefabs/Weapons/Attachments/Handguards/PEQ15/PEQ15.et" {
+ coords 125.48 1.376 131.921
+}
+GenericEntity : "{723D1C2ACFFEF56E}Prefabs/Weapons/Rifles/M16_Laser/Rifle_M16A2_Laser.et" {
+ coords 125.483 1.356 130.818
+}
+SCR_DestructibleBuildingEntity : "{7BE9DE15EE9823C2}PrefabLibrary/Structures/Houses/House_Village_E_1I06.et" {
+ coords 117.183 0.001 131.842
+}
+GenericEntity : "{8D3CBF3A91BE18C9}Prefabs/Props/Civilian/BenchStreet/StreetBench_01/BenchStreet_01_Base.et" {
+ components {
+ }
+ coords 127.085 1.001 133.746
+}
+GenericEntity : "{B5D06FC85B2C3873}Prefabs/Props/Decorations/Flowerpots/FlowerpotStreet_01/FlowerpotStreet_01_rect_short_Tagetes_yellow.et" {
+ coords 130.738 1.001 130.228
+}
+GenericEntity : "{C50DFD7AEBFFB3F3}PrefabLibrary/Props/Decoration/FlowerpotStreet_01_rect_long_begonia_red.et" {
+ coords 129.973 1.001 126.477
+}
+GenericEntity : "{EA2387EFF5F7FF6C}Prefabs/Structures/Infrastructure/Lamps/LampStreet_E_02/LampStreet_E_02_doubleAngled_base.et" {
+ coords 128.222 0.001 135.086
+}

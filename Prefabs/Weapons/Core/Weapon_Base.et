@@ -1,0 +1,17 @@
+GenericEntity {
+ ID "CFBAA4B725411E45"
+ components {
+  ActionsManagerComponent "{A29AE67FF4D82B0F}" {
+   additionalActions {
+    BEAR_LaserPointerAction "{59949C9C5862CD72}" {
+     ParentContextList {
+      "default"
+     }
+     UIInfo UIInfo "{59949C9C59B3BB52}" {
+     }
+     "Sort Priority" 4
+    }
+   }
+  }
+ }
+}

@@ -1,0 +1,99 @@
+FrameWidgetClass {
+ Name "rootFrame"
+ {
+  OverlayWidgetClass "{59952D89E6FF48F2}" {
+   Name "Overlay0"
+   Slot FrameWidgetSlot "{59952D89E6FF48D7}" {
+    Anchor 0.05 0.05 0.95 0.95
+    PositionX -96
+    OffsetLeft 0
+    PositionY -54
+    OffsetTop 0
+    SizeX -1628
+    OffsetRight 0
+    SizeY -942
+    OffsetBottom 0
+    Alignment 0 0
+    SizeToContent 1
+   }
+   {
+    BlurWidgetClass "{59952D8911A392CF}" {
+     Name "Blur0"
+     Slot OverlayWidgetSlot "{59952D89E1BB1518}" {
+      HorizontalAlign 3
+      VerticalAlign 3
+     }
+     "Is Enabled" 0
+     "Is Visible" 0
+     IsPixelPerfect 0
+     Intensity 0.5
+     "Smooth Border" 100 100 100 100
+    }
+    ItemPreviewWidgetClass "{59949CBD2CAB025C}" {
+     Name "laserRender"
+     Slot OverlayWidgetSlot "{59952D89E1BB14F0}" {
+      HorizontalAlign 3
+      VerticalAlign 3
+     }
+     "Ignore Cursor" 0
+     "Use Engine Scale" 0
+     xscale 1
+     yscale 1
+     Filter Bilinear
+     Format LDR
+     "Use clear color" 1
+     "Clear Color" 0 0 0 1
+     "Blend mode" Blend
+    }
+    ButtonWidgetClass "{5995490E5CAEB3B6}" {
+     Name "CloseButton"
+     Slot OverlayWidgetSlot "{5995490E5CAEB397}" {
+      HorizontalAlign 3
+      VerticalAlign 3
+     }
+     Color 1 1 1 0
+    }
+    SizeLayoutWidgetClass "{59953ECC5269A413}" {
+     Name "SizeLayout0"
+     Slot OverlayWidgetSlot "{59953ECC5269DBEB}" {
+      HorizontalAlign 2
+      Padding 0 500 200 0
+     }
+     AllowWidthOverride 1
+     WidthOverride 200
+     AllowHeightOverride 1
+     HeightOverride 200
+     {
+      ButtonWidgetClass "{59952D86D8F904ED}" {
+       Name "ToggleButton"
+       Slot OverlayWidgetSlot "{59952D86D8F904CF}" {
+        HorizontalAlign 3
+        VerticalAlign 3
+       }
+       Color 0.04 0.04 0.04 1
+       {
+        TextWidgetClass "{59953ECC3C4E4896}" {
+         Name "Text0"
+         Slot ButtonWidgetSlot "{59953ECC3C4E486B}" {
+          HorizontalAlign 3
+          VerticalAlign 3
+         }
+         Color 0.558 0.558 0.558 1
+         Text "Toggle"
+         "Font Size" 44
+         "Horizontal Alignment" Center
+         "Vertical Alignment" Center
+         FontProperties FontProperties "{59953ECC3A8C7385}" {
+          Bold 1
+          ShadowSize 2
+          ShadowOffset 9.9 2.9
+         }
+        }
+       }
+      }
+     }
+    }
+   }
+  }
+ }
+}

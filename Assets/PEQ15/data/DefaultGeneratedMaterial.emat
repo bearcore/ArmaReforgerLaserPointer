@@ -1,0 +1,4 @@
+MatPBRBasic {
+ BCRMap "{BEB697AD5548C68E}Assets/PEQ15/peq15_BCR.edds"
+ NMOMap "{866E2C3F8C3F9410}Assets/PEQ15/peq15_NMO.edds"
+}

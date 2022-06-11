@@ -1,0 +1,15 @@
+MetaFileClass {
+ Name "{D3A0A18CAACDC512}Assets/LaserPointer/Audio/LaserPointer.afm"
+ Configurations {
+  AudioOutputStateResourceClass PC {
+  }
+  AudioOutputStateResourceClass XBOX_ONE : PC {
+  }
+  AudioOutputStateResourceClass XBOX_SERIES : PC {
+  }
+  AudioOutputStateResourceClass PS4 : PC {
+  }
+  AudioOutputStateResourceClass HEADLESS : PC {
+  }
+ }
+}

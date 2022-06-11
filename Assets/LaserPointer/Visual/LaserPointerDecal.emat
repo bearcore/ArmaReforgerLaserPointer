@@ -1,0 +1,15 @@
+MatPBRDecal {
+ Emissive 1 0.153 0.192 1
+ EmissiveLV 15
+ SpecularMul 0
+ AlphaMul 2
+ BlendMode AlphaBlend
+ RoughnessScale 0
+ MetalnessScale 0
+ AOScale 0
+ DielectricReflectance 0.02
+ OpacityMap "{67275A010AAEB285}Assets/CircleBrightness.edds"
+ GBufferAlbedo 1
+ GBufferRoughness 1
+ GBufferMetalness 1
+}

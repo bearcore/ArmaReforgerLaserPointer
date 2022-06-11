@@ -1,0 +1,30 @@
+MetaFileClass {
+ Name "{BEB697AD5548C68E}Assets/PEQ15/peq15_BCR.edds"
+ Configurations {
+  TIFFResourceClass PC : "{EAB5DE3219F9CBA8}Configs/System/ResourceTypes/PC/TextureColorMap.conf" {
+   FormatCompress Best
+   MaxSize "4096"
+   Conversion DXTCompression
+  }
+  TIFFResourceClass XBOX_ONE : "{91D862F89991BFBE}Configs/System/ResourceTypes/XBOX_ONE/TextureColorMap.conf" {
+   FormatCompress Best
+   MaxSize "4096"
+   Conversion DXTCompression
+  }
+  TIFFResourceClass XBOX_SERIES : "{5FEAED1642ECE679}Configs/System/ResourceTypes/XBOX_SERIES/TextureColorMap.conf" {
+   FormatCompress Best
+   MaxSize "4096"
+   Conversion DXTCompression
+  }
+  TIFFResourceClass PS4 : "{12273E1A0928F0C4}Configs/System/ResourceTypes/PS4/TextureColorMap.conf" {
+   FormatCompress Best
+   MaxSize "4096"
+   Conversion DXTCompression
+  }
+  TIFFResourceClass HEADLESS : "{BEAF5CD0C438676E}Configs/System/ResourceTypes/HEADLESS/TextureColorMap.conf" {
+   FormatCompress Best
+   MaxSize "4096"
+   Conversion DXTCompression
+  }
+ }
+}

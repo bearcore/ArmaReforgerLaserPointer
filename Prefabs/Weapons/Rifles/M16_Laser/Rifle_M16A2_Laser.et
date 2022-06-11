@@ -1,0 +1,20 @@
+GenericEntity : "{3E413771E1834D2F}Prefabs/Weapons/Rifles/M16/Rifle_M16A2.et" {
+ ID "CFBAA4B725411E45"
+ components {
+  WeaponComponent "{CFBAA4B706BA66E8}" {
+   components {
+    AttachmentSlotComponent "{59968048344D963C}" {
+     AttachmentSlot InventoryStorageSlot Laser {
+      PivotID "barrel_chamber"
+      Offset 0.0404 -0.0026 0.1676
+      Angles 0 0 90
+      Prefab "{0F156CAC1BF75626}Prefabs/Weapons/Attachments/Handguards/PEQ15/PEQ15.et"
+     }
+     AttachmentType AttachmentHandGuard "{59968048880B95F3}" {
+     }
+    }
+   }
+  }
+ }
+ coords 0 0 0
+}
