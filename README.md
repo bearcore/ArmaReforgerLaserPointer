@@ -2,6 +2,7 @@
 ![ArmaReforgerWorkbench_VmMDm96WFo](https://user-images.githubusercontent.com/62651909/173182834-fbcebb0b-87c6-48b4-a7a7-46cbc4b58591.jpg)
 
 
+# Installation
 How to add to your weapon mod:
 
 1. Download the mod from the ingame workshop
@@ -13,6 +14,7 @@ How to add to your weapon mod:
 3. Restart the editor
 
 
+# Usage
 Now you can check out how the example laserpointer works: Prefabs\Weapons\Attachments\Handguards\PEQ15\PEQ15.et
 
 To add the functionality to your existing laserpointer, simply add a BEAR_LaserPointerComponent to it.
@@ -22,3 +24,9 @@ Additionally, you can add a SoundComponent and add the LaserPointer.acp in the F
 
 
 Alternatively, simply duplicate the PEQ15.et, open your duplicate and then change the Object in the MeshObject Component to give it your own model.
+
+
+
+# Known Issues
+- Rendering of the dot on characters does not work correctly
+- Dot is not visible on distant objects
