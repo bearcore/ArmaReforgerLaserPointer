@@ -3,15 +3,34 @@ class BEAR_LaserPointerComponentClass: ScriptComponentClass
 {
 };
 
+enum BEAR_LaserPointerDrawing {
+	LIGHT, 
+	MESH,
+	DECAL
+}
+
 /// This component enables it's object to be a laser pointer. Simply call SetLaserEnabled(true/false);
 class BEAR_LaserPointerComponent: ScriptComponent
 {
+	[RplProp(onRplName: "OnIsOnChanged")]
 	protected bool _isOn = false;	
+	
 	protected Decal _decal;	
 	protected SoundComponent _soundComponent;
 	protected IEntity _laserDotEntity;
+	protected IEntity _cachedPlayerOwningLaser;
+	protected ref array<IEntity> _cachedIgnoreList;
 	
-	const bool USE_DECAL = true;
+	[Attribute(defvalue: "0 0 0", uiwidget: UIWidgets.Coords, desc: "Rotation of the laser in degrees (0,0,0 is default Z+)" )]
+	vector LaserForwardsRotation;
+	[Attribute("1", UIWidgets.Slider, desc: "Size of the Laser Dot", "0.1 5 0.001")]
+	float LaserSize;
+	
+	// It seems like setting a color on a Material is currently not possible in workbench?
+	//[Attribute("1 0.1 0.1 0", UIWidgets.ColorPicker, desc: "Color of the Laser Dot")]
+	//ref Color LaserColor; 
+	
+	const BEAR_LaserPointerDrawing drawingType = BEAR_LaserPointerDrawing.MESH;
 	
 	void ShowLaserUI()
 	{
@@ -27,16 +46,15 @@ class BEAR_LaserPointerComponent: ScriptComponent
 	
 	void SetLaserEnabled(bool enabled)
 	{
-		RpcBroadcastLaserEnabled(enabled);
-		Rpc(RpcBroadcastLaserEnabled, enabled);
+		_isOn = enabled;
+		OnIsOnChanged();
+		Replication.BumpMe();
 	}
 	
-	[RplRpc(RplChannel.Reliable, RplRcver.Broadcast)]
-	protected void RpcBroadcastLaserEnabled(bool enabled)
+	protected void OnIsOnChanged()
 	{
 		if(_soundComponent) _soundComponent.SoundEvent("Sound_SwitchPressed");
 		
-		_isOn = enabled;
 		if(!_isOn && _decal)
 		{
 			World world = GetOwner().GetWorld();
@@ -44,7 +62,7 @@ class BEAR_LaserPointerComponent: ScriptComponent
 			_decal = NULL;
 		}
 		
-		BEAR_LaserPointerAction._isOn = enabled;
+		BEAR_LaserPointerAction._isOn = _isOn;
 	}
 	
 	// We need the OnPostInit and EOnInit for the EOnFrame to be called.
@@ -56,6 +74,8 @@ class BEAR_LaserPointerComponent: ScriptComponent
 	protected override void EOnInit(IEntity owner)
 	{
 		_soundComponent = SoundComponent.Cast(owner.FindComponent(SoundComponent));
+		_cachedIgnoreList = {GetOwner()};
+		
 		SetEventMask(owner, EntityEvent.POSTFRAME);
 	}
 	
@@ -65,29 +85,50 @@ class BEAR_LaserPointerComponent: ScriptComponent
 		if(!_isOn) return;
 		
 		// Make sure the laser is not hitting the weapon or the PEQbox for example
-		array<IEntity> exclude = {};
-		CreateExcludeArray(exclude);
+		IEntity playerOwningLaser = GetPlayerOwningLaser();	
+		if(playerOwningLaser != _cachedPlayerOwningLaser)
+		{
+			_cachedIgnoreList = {};
+			CreateExcludeArray(playerOwningLaser, _cachedIgnoreList);
+			_cachedPlayerOwningLaser = playerOwningLaser;
+		}	
 		
 		vector position = owner.GetOrigin();
-		vector direction = owner.GetYawPitchRoll().AnglesToVector();
+		vector direction = (owner.GetYawPitchRoll() + LaserForwardsRotation).AnglesToVector();
 		
 		// The Trace is a physics raycast that checks if any physics stuff is hit in a straight line
 		TraceParam trace = CreateTrace(position, direction);
-		trace.ExcludeArray = exclude;
+		trace.ExcludeArray = _cachedIgnoreList;
 		World world = owner.GetWorld();
 		float hitDistance = world.TraceMove(trace, null);
 		vector hitPosition = vector.Direction(trace.Start, trace.End) * hitDistance + trace.Start;
 		
-		if(USE_DECAL) 
+		//Shape.CreateSphere(COLOR_RED, ShapeFlags., hitPosition, 1);
+		
+		if(drawingType == BEAR_LaserPointerDrawing.DECAL) 
 			UpdateLaserDotDecal(hitPosition, trace);
-		else 
-			UpdateLaserDotEntity(hitPosition);
+		else if(drawingType == BEAR_LaserPointerDrawing.MESH)
+			UpdateLaserDotEntity(hitPosition, trace);
+		else if(drawingType == BEAR_LaserPointerDrawing.LIGHT)
+			UpdateLaserLight(hitPosition, trace);
 	}
 	
-	protected void UpdateLaserDotEntity(vector targetPosition)
+	protected void UpdateLaserDotEntity(vector targetPosition, TraceParam trace)
 	{	
+		targetPosition = targetPosition + (trace.TraceNorm * 0.005);
+		
 		if(!_laserDotEntity)
-			_laserDotEntity = GetGame().SpawnEntityPrefab(Resource.Load("{5AE60D9669773AFE}Prefabs/LaserDot.et"), GetOwner().GetWorld());
+		{
+			EntitySpawnParams params = new EntitySpawnParams();
+			params.Transform[3] = targetPosition;
+			params.Scale = LaserSize;
+			_laserDotEntity = GetGame().SpawnEntityPrefabLocal(Resource.Load("{5AE60D9669773AFE}Prefabs/LaserDot.et"), GetOwner().GetWorld(), params);
+			
+			// This flag makes it so the dot does not disappear when viewed from angles mildly different from the initial spawn position. 
+			// Finding this took hours from my life which I will never get back :)
+			_laserDotEntity.SetFlags(EntityFlags.ACTIVE, false);
+		}
+		
 		_laserDotEntity.SetOrigin(targetPosition);
 	}
 	
@@ -120,51 +161,34 @@ class BEAR_LaserPointerComponent: ScriptComponent
 			nearClip, farClip, angle * Math.DEG2RAD, size, stretch, material, lifeTime, color);
 	}
 	
+	protected void UpdateLaserLight(vector targetPosition, TraceParam trace)
+	{
+		// TODO: Find a way to make small lights draw at distance
+		/*
+		m_LightHandle = LightHandle.AddStaticLight(GetOwner().GetWorld(), LightType.POINT, lightFlags, m_fRadiusOfFlash, Color.FromVector(m_vCol), m_fLV, m_vOffset.Multiply4(mat));
+		m_LightHandle.SetLensFlareType(entity.GetWorld(), LightLensFlareType.Disabled);
+		m_LightHandle.SetIntensityEVClip(entity.GetWorld(), m_fEVClip);
+		*/
+	}
+	
+	protected IEntity GetPlayerOwningLaser()
+	{
+		IEntity weaponParent = GetOwner().GetParent();
+		if(!weaponParent) return null;
+		return weaponParent.GetParent();
+	}
+	
 	// passes out an array of objects that should be ignored by the Physics Ray
-	protected void CreateExcludeArray(notnull out array<IEntity> result)
+	protected void CreateExcludeArray(IEntity playerOwningLaser, notnull out array<IEntity> result)
 	{
 		// Exclude the laser caster object
 		result.Insert(GetOwner());
-		
-		IEntity playerOwningLaser = GetPlayerOwningLaser();
-		if(!playerOwningLaser) return;
 		
 		// Exclude all of our weapons
 		AddWeaponsOfPlayer(playerOwningLaser, result);
 		
 		// Exclude the player (hands were problematic)
 		result.Insert(playerOwningLaser);
-	}
-	
-	// Get the weapon that holds this attachment and then get the player holding that weapon.
-	// I wish there was an easier way, something like InventoryItemComponent.GetPlayerOwner()?
-	protected IEntity GetPlayerOwningLaser()
-	{
-		InventoryItemComponent attachment = InventoryItemComponent.Cast(GetOwner().FindComponent(InventoryItemComponent));
-		if(!attachment.GetParentSlot()) return null;
-		BaseInventoryStorageComponent storage = attachment.GetParentSlot().GetStorage();
-		WeaponComponent attachmentWeapon = WeaponComponent.Cast(storage.GetOwner().FindComponent(WeaponComponent));
-		
-		array<int> playerIds = {};
-		GetGame().GetPlayerManager().GetPlayers(playerIds);
-		foreach(int playerId : playerIds)
-		{
-			IEntity player = GetGame().GetPlayerManager().GetPlayerControlledEntity(playerId);
-			if(!player) continue;
-			BaseWeaponManagerComponent weaponManager = BaseWeaponManagerComponent.Cast(player.FindComponent(BaseWeaponManagerComponent));
-		
-			array<IEntity> weapons = {};
-			weaponManager.GetWeaponsList(weapons);
-			foreach(IEntity weapon : weapons)
-			{
-				if(weapon == attachmentWeapon.GetOwner())
-				{
-					return player;
-				}
-			}
-		}
-		
-		return null;
 	}
 	
 	// Adds the weapons the passed player is holding

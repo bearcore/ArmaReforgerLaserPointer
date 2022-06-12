@@ -18,4 +18,6 @@ GenericEntity {
   }
  }
  coords 125.881 2.092 133.786
+ scale 0.25
+ Flags 1
 }

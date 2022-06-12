@@ -1,6 +1,6 @@
 MatPBRDecal {
  Emissive 1 0.153 0.192 1
- EmissiveLV 3.851
+ EmissiveLV 9.353
  SpecularMul 0
  AlphaMul 2
  BlendMode AlphaBlend

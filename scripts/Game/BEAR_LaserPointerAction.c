@@ -9,7 +9,7 @@ class BEAR_LaserPointerAction : ScriptedUserAction
 	
 	override void Init(IEntity pOwnerEntity, GenericComponent pManagerComponent)
 	{
-		_isOn = false;
+		//_isOn = false;
 	}
 	
 	// As the BEAR_LaserPointerAction is on the Weapon_Base.et, make sure we have a laser pointer attached before showing the Action.
