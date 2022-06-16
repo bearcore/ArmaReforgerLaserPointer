@@ -217,7 +217,7 @@ class BEAR_LaserPointerComponent: ScriptComponent
 	{
 		TraceParam trace = new TraceParam();
 		trace.Start = position;
-		trace.End = position + direction * 100;
+		trace.End = position + direction * 1000;
 		
 		// TODO: Find cleaner flags and mask values...
 		trace.Flags = TraceFlags.WORLD | TraceFlags.ENTS;
