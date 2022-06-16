@@ -81,7 +81,7 @@ class BEAR_LaserPointerComponent: ScriptComponent
 	{
 		_soundComponent = SoundComponent.Cast(owner.FindComponent(SoundComponent));
 		_cachedIgnoreList = {GetOwner()};
-		
+	
 		GetGame().GetInputManager().AddActionListener("LaserPointer", EActionTrigger.DOWN, KeybindPressed);
 		
 		SetEventMask(owner, EntityEvent.POSTFRAME);
@@ -109,8 +109,10 @@ class BEAR_LaserPointerComponent: ScriptComponent
 			_cachedPlayerOwningLaser = playerOwningLaser;
 		}	
 		
-		vector position = owner.GetOrigin() + LaserOffset;
 		vector direction = (owner.GetYawPitchRoll() + LaserForwardsRotation).AnglesToVector();
+		vector transform[4];
+		owner.GetWorldTransform(transform);
+		vector position = owner.GetOrigin() + LaserOffset.Multiply3(transform);
 		
 		// The Trace is a physics raycast that checks if any physics stuff is hit in a straight line
 		TraceParam trace = CreateTrace(position, direction);
@@ -233,7 +235,7 @@ class BEAR_LaserPointerComponent: ScriptComponent
 		
 		// TODO: Find cleaner flags and mask values...
 		trace.Flags = TraceFlags.WORLD | TraceFlags.ENTS;
-		trace.LayerMask = EPhysicsLayerDefs.Projectile;
+		trace.LayerMask = EPhysicsLayerDefs.Projectile | EPhysicsLayerDefs.Foliage;
 		
 		return trace;
 	}
