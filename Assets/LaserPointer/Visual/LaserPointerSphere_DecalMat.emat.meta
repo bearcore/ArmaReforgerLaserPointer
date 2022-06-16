@@ -1,0 +1,15 @@
+MetaFileClass {
+ Name "{0D8C121C3FB2C30D}Assets/LaserPointer/Visual/LaserPointerSphere_DecalMat.emat"
+ Configurations {
+  EMATResourceClass PC {
+  }
+  EMATResourceClass XBOX_ONE : PC {
+  }
+  EMATResourceClass XBOX_SERIES : PC {
+  }
+  EMATResourceClass PS4 : PC {
+  }
+  EMATResourceClass HEADLESS : PC {
+  }
+ }
+}

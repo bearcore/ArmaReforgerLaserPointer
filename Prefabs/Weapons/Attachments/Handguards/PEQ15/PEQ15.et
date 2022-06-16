@@ -7,6 +7,7 @@ GenericEntity : "{FB1A7F5BC7D935E2}Prefabs/Weapons/Attachments/Handguards/Handgu
    }
   }
   BEAR_LaserPointerComponent "{59966CCEF31DAF17}" {
+   LaserColor 0.053 0.956 0.815 0
   }
   InventoryItemComponent "{557E85EEE1B60313}" {
    Enabled 1

@@ -4,6 +4,6 @@ GenericWorldEntity world {
  boundMaxs -0.000 -0.000 -0.000
  blockSize 100 1500 100
 }
-GenericEntity : "{5AE60D9669773AFE}Prefabs/LaserDot.et" {
+GenericEntity : "{0F156CAC1BF75626}Prefabs/Weapons/Attachments/Handguards/PEQ15/PEQ15.et" {
  coords 0 0 0
 }

@@ -61,6 +61,10 @@ class BEAR_LaserPointerComponent: ScriptComponent
 			world.RemoveDecal(_decal);
 			_decal = NULL;
 		}
+		if(!_isOn && _laserDotEntity)
+		{
+			delete _laserDotEntity;
+		}
 		
 		BEAR_LaserPointerAction._isOn = _isOn;
 	}
@@ -119,6 +123,11 @@ class BEAR_LaserPointerComponent: ScriptComponent
 		
 		if(!_laserDotEntity)
 		{
+			// Not working :(
+			/*ResourceName materialName = "{87F66F81E518E89D}Assets/LaserPointer/Visual/LaserPointerSphere.emat";
+			Material material = Material.GetMaterial(materialName);
+			material.SetParam("Emissive", LaserColor.PackToInt());*/
+			
 			EntitySpawnParams params = new EntitySpawnParams();
 			params.Transform[3] = targetPosition;
 			params.Scale = LaserSize;

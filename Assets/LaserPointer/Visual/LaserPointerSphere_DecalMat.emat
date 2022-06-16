@@ -1,0 +1,16 @@
+MatPBRDecal {
+ Color 1 0.107 0.107 1
+ Emissive 1 0.102 0.102 0
+ EmissiveLV 7.289
+ EmissiveAbsoluteLV 0
+ Sort near
+ SortBias 7
+ CastShadow 0
+ ReceiveShadow 0
+ OccludeRain 0
+ OccludeWetness 0
+ BlendMode AlphaBlend
+ GBufferAlbedo 1
+ GBufferRoughness 1
+ GBufferMetalness 1
+}

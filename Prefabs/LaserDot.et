@@ -4,7 +4,7 @@ GenericEntity {
   MeshObject "{59969D5FDFF2B9D0}" {
    Object "{DAED341AFE9C925D}system/wbdata/Gizmo3D/sphere_small.xob"
    Materials {
-    MaterialAssignClass "{5996A82071A72A4C}" {
+    MaterialAssignClass "{59A0F91D6EB41193}" {
      SourceMaterial "system/wbdata/gizmo3D/gizmo3D"
      AssignedMaterial "{87F66F81E518E89D}Assets/LaserPointer/Visual/LaserPointerSphere.emat"
     }
