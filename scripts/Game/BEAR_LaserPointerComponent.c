@@ -21,6 +21,8 @@ class BEAR_LaserPointerComponent: ScriptComponent
 	protected IEntity _cachedPlayerOwningLaser;
 	protected ref array<IEntity> _cachedIgnoreList;
 	
+	[Attribute(defvalue: "0 0 0", uiwidget: UIWidgets.Coords, desc: "Origin Offset of the laser beam" )]
+	vector LaserOffset;
 	[Attribute(defvalue: "0 0 0", uiwidget: UIWidgets.Coords, desc: "Rotation of the laser in degrees (0,0,0 is default Z+)" )]
 	vector LaserForwardsRotation;
 	[Attribute("1", UIWidgets.Slider, desc: "Size of the Laser Dot", "0.1 5 0.001")]
@@ -80,7 +82,17 @@ class BEAR_LaserPointerComponent: ScriptComponent
 		_soundComponent = SoundComponent.Cast(owner.FindComponent(SoundComponent));
 		_cachedIgnoreList = {GetOwner()};
 		
+		GetGame().GetInputManager().AddActionListener("LaserPointer", EActionTrigger.DOWN, KeybindPressed);
+		
 		SetEventMask(owner, EntityEvent.POSTFRAME);
+	}
+	
+	private void KeybindPressed()
+	{
+		IEntity localPlayer = GetGame().GetPlayerController().GetControlledEntity();
+		
+		if(localPlayer == GetPlayerOwningLaser())
+			ToggleLaserEnabled();
 	}
 	
 	// This method is called every frame.
@@ -97,7 +109,7 @@ class BEAR_LaserPointerComponent: ScriptComponent
 			_cachedPlayerOwningLaser = playerOwningLaser;
 		}	
 		
-		vector position = owner.GetOrigin();
+		vector position = owner.GetOrigin() + LaserOffset;
 		vector direction = (owner.GetYawPitchRoll() + LaserForwardsRotation).AnglesToVector();
 		
 		// The Trace is a physics raycast that checks if any physics stuff is hit in a straight line
