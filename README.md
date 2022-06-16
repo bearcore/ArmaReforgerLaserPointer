@@ -29,8 +29,7 @@ Alternatively, simply duplicate the PEQ15.et, open your duplicate and then chang
 
 
 # Known Issues
-- Rendering of the dot on characters does not work correctly
-- Dot is not visible on distant objects
+- Rendering of the dot on Clothes and some specific walls does not work correctly. The issue seems to be that there is no precise collission data that I could use to determine where to draw the dot exactly.
 
 
 # Credits
