@@ -7,7 +7,8 @@ GenericEntity : "{FB1A7F5BC7D935E2}Prefabs/Weapons/Attachments/Handguards/Handgu
    }
   }
   BEAR_LightComponent "{59A29A2948EEB1F3}" {
-   LightOffset 0 0 0.1
+   LightOffset 0 0 0
+   DebugLightOffset 1
    LightBrightness 3
    NearPlane 0.1
   }

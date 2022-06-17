@@ -11,6 +11,7 @@ class BEAR_LightComponent: ScriptComponent
 	
 	protected SoundComponent _soundComponent;
 	protected IEntity _cachedPlayerOwningLight;
+	protected IEntity _lightOwner;
 	protected ref array<IEntity> _cachedIgnoreList;
 	protected LightHandle _lightHandle;
 	
@@ -53,6 +54,7 @@ class BEAR_LightComponent: ScriptComponent
 		{
 			_lightHandle.RemoveLight(GetOwner().GetWorld());
 			_lightHandle = NULL;
+			delete _lightOwner;
 		}
 		
 		BEAR_LightAction._isOn = _isOn;
@@ -97,13 +99,13 @@ class BEAR_LightComponent: ScriptComponent
 			_cachedPlayerOwningLight = playerOwningLight;
 		}	
 		
-		vector direction = (owner.GetYawPitchRoll() + LightForwardsRotation).AnglesToVector();
+		vector direction = owner.GetYawPitchRoll() + LightForwardsRotation;
 		vector transform[4];
 		owner.GetWorldTransform(transform);
 		vector position = owner.GetOrigin() + LightOffset.Multiply3(transform);
 		
 		if(DebugLightOffset)
-			_debugShape = Shape.CreateArrow(position, position + direction * 0.1, 0.04, Color.Red.PackToInt(), ShapeFlags.NOZBUFFER);
+			_debugShape = Shape.CreateArrow(position, position + direction.AnglesToVector() * 0.1, 0.04, Color.Red.PackToInt(), ShapeFlags.NOZBUFFER);
 		
 		UpdateLight(owner, position, direction);
 	}
@@ -111,17 +113,29 @@ class BEAR_LightComponent: ScriptComponent
 	protected void UpdateLight(IEntity owner, vector position, vector direction)
 	{	
 		auto world = owner.GetWorld();
+		/*vector transform[4];
+		owner.GetTransform(transform);
+		transform*/
 		
 		if(!_lightHandle)
 		{
-			_lightHandle = LightHandle.AddDynamicLight(owner, LightType.SPOT, LightFlags.CASTSHADOW, LightSize, LightColor, LightBrightness);
+			EntitySpawnParams spawnParams = new EntitySpawnParams();
+			spawnParams.Parent = owner;
+			spawnParams.TransformMode = ETransformMode.OFFSET;
+			_lightOwner = GetGame().SpawnEntity(GenericEntity, world, spawnParams);
+			_lightOwner.SetOrigin(position);
+			_lightOwner.SetAngles(direction);
+			
+			_lightHandle = LightHandle.AddDynamicLight(_lightOwner, LightType.SPOT, LightFlags.CASTSHADOW, LightSize, LightColor, LightBrightness);
 			_lightHandle.SetLensFlareType(world, LightLensFlareType.Automatic);
 			_lightHandle.SetCone(world, LightCone);
 			_lightHandle.SetNearPlane(world, NearPlane);
 		}
 		
-		_lightHandle.SetPosition(world, position);
-		_lightHandle.SetDirection(world, direction);
+		_lightOwner.SetOrigin(position);
+		vector inverse = {direction[1], direction[0], 0};
+		_lightOwner.SetAngles(inverse);
+		//_lightHandle.SetDirection(world, direction);
 	}
 	
 	protected IEntity GetPlayerOwningLight()
