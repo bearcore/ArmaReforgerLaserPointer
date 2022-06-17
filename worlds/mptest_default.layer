@@ -1,6 +1,9 @@
 GenericEntity : "{0F156CAC1BF75626}Prefabs/Weapons/Attachments/Handguards/PEQ15/PEQ15.et" {
  coords 125.48 1.376 131.921
 }
+GenericEntity : "{3169273B28F8DF35}Prefabs/Weapons/Attachments/Handguards/Surefire X300U/Surefire X300U.et" {
+ coords 124.935 1.282 129.745
+}
 $grp GenericEntity : "{723D1C2ACFFEF56E}Prefabs/Weapons/Rifles/M16_Laser/Rifle_M16A2_Laser.et" {
  {
   coords 165.887 1.356 130.818
@@ -11,6 +14,9 @@ $grp GenericEntity : "{723D1C2ACFFEF56E}Prefabs/Weapons/Rifles/M16_Laser/Rifle_M
 }
 SCR_DestructibleBuildingEntity : "{7BE9DE15EE9823C2}PrefabLibrary/Structures/Houses/House_Village_E_1I06.et" {
  coords 117.183 0.001 131.842
+}
+GenericEntity : "{8542D48269DD254C}Prefabs/Weapons/Rifles/M16_Laser/Rifle_M16A2_Light.et" {
+ coords 124.949 1.42 129.285
 }
 GenericEntity : "{8D3CBF3A91BE18C9}Prefabs/Props/Civilian/BenchStreet/StreetBench_01/BenchStreet_01_Base.et" {
  components {
@@ -25,6 +31,9 @@ GenericEntity : "{BE99D77D1155B127}Prefabs/Systems/Arsenal/ArsenalBoxes/US/Arsen
 }
 GenericEntity : "{C50DFD7AEBFFB3F3}PrefabLibrary/Props/Decoration/FlowerpotStreet_01_rect_long_begonia_red.et" {
  coords 129.973 1.001 126.477
+}
+GenericEntity : "{C97B67E1FF27FF52}Prefabs/Weapons/Rifles/M16_Laser/Rifle_M16A2_LaserAndLight.et" {
+ coords 125.53 1.278 126.09
 }
 GenericEntity : "{EA2387EFF5F7FF6C}Prefabs/Structures/Infrastructure/Lamps/LampStreet_E_02/LampStreet_E_02_doubleAngled_base.et" {
  coords 128.222 0.001 135.086

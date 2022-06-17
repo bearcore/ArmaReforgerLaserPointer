@@ -1,0 +1,15 @@
+MetaFileClass {
+ Name "{3169273B28F8DF35}Prefabs/Weapons/Attachments/Handguards/Surefire X300U/Surefire X300U.et"
+ Configurations {
+  EntityTemplateResourceClass PC {
+  }
+  EntityTemplateResourceClass XBOX_ONE : PC {
+  }
+  EntityTemplateResourceClass XBOX_SERIES : PC {
+  }
+  EntityTemplateResourceClass PS4 : PC {
+  }
+  EntityTemplateResourceClass HEADLESS : PC {
+  }
+ }
+}

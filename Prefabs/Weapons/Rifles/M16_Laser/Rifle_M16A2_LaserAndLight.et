@@ -1,0 +1,30 @@
+GenericEntity : "{3E413771E1834D2F}Prefabs/Weapons/Rifles/M16/Rifle_M16A2.et" {
+ ID "CFBAA4B725411E45"
+ components {
+  WeaponComponent "{CFBAA4B706BA66E8}" {
+   components {
+    AttachmentSlotComponent "{59A2B15F56096FDE}" {
+     AttachmentSlot InventoryStorageSlot Laser {
+      PivotID "barrel_chamber"
+      Offset 0.0404 -0.0026 0.1676
+      Angles 0 0 90
+      Prefab "{0F156CAC1BF75626}Prefabs/Weapons/Attachments/Handguards/PEQ15/PEQ15.et"
+     }
+     AttachmentType AttachmentHandGuard "{59A2B15F56096FCA}" {
+     }
+    }
+    AttachmentSlotComponent "{59A2B15F5D9C0A7D}" {
+     AttachmentSlot InventoryStorageSlot Light {
+      PivotID "barrel_chamber"
+      Offset -0.047 -0.0026 0.1676
+      Angles 0 0 90
+      Prefab "{3169273B28F8DF35}Prefabs/Weapons/Attachments/Handguards/Surefire X300U/Surefire X300U.et"
+     }
+     AttachmentType AttachmentHandGuard "{59A2B15F7E1E4D25}" {
+     }
+    }
+   }
+  }
+ }
+ coords 0 0 0
+}

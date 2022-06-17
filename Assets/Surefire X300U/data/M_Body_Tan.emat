@@ -1,0 +1,6 @@
+MatPBRBasic {
+ BlendMode AlphaBlend
+ BCRMap "{824ED61ED6D5B462}Assets/Surefire X300U/Textures/bcr.edds"
+ OpacityMap "{048C1E82B4ECA274}Assets/Surefire X300U/Textures/opacity.edds"
+ NMOMap "{0D6931BC64AB9395}Assets/Surefire X300U/Textures/normal.edds"
+}

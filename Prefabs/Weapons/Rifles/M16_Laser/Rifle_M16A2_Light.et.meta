@@ -1,0 +1,15 @@
+MetaFileClass {
+ Name "{8542D48269DD254C}Prefabs/Weapons/Rifles/M16_Laser/Rifle_M16A2_Light.et"
+ Configurations {
+  EntityTemplateResourceClass PC {
+  }
+  EntityTemplateResourceClass XBOX_ONE : PC {
+  }
+  EntityTemplateResourceClass XBOX_SERIES : PC {
+  }
+  EntityTemplateResourceClass PS4 : PC {
+  }
+  EntityTemplateResourceClass HEADLESS : PC {
+  }
+ }
+}

@@ -11,6 +11,14 @@ GenericEntity {
      }
      "Sort Priority" 4
     }
+    BEAR_LightAction "{59A29A2DC4724896}" {
+     ParentContextList {
+      "default"
+     }
+     UIInfo UIInfo "{59A29A2DC771F3FE}" {
+     }
+     "Sort Priority" 5
+    }
    }
   }
  }
